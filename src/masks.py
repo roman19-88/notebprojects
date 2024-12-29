@@ -1,5 +1,5 @@
 from typing import Union
-import os
+
 
 
 def get_mask_card_number(number: Union[int]) -> Union[str]:
