@@ -22,6 +22,6 @@ def get_date(date: Union[str]) -> Union[str, int]:
     return f'{correct_data[2]}.{correct_data[1]}.{correct_data[0]}'
 
 
-print(get_date('2024-03-11T02:26:18.671407'))
 
-# 2024-03-11T02:26:18.671407
+
+
