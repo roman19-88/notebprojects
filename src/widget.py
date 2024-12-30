@@ -22,6 +22,5 @@ def get_date(date: Union[str]) -> Union[str, int]:
     return f'{correct_data[2]}.{correct_data[1]}.{correct_data[0]}'
 
 
-
-print('hello world')
+print('hello')
 
