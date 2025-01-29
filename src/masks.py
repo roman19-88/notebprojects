@@ -12,5 +12,4 @@ def get_mask_account(number_score: Union[int]) -> Union[str]:
     str_number_score = str(number_score)
     return f"**{str_number_score[-4:]}"
 
-x=3+5
-print(x)
+
