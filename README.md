@@ -27,6 +27,9 @@ executed_transactions = filter_by_state(transactions)
 
 # Пример использования sort_by_date
 sorted_transactions = sort_by_date(transactions)
+## Вклад
+
+Если вы хотите внести свой вклад, пожалуйста, создайте форк репозитория и отправьте пул-реквест.
 
 
 
