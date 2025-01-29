@@ -7,13 +7,13 @@ Bank - это проект для синхронизирования банко�
 ## Установка:
 
 1. Клонируйте репозиторий:
-```
+
 git clone https://github.com/roman19-88/notebprojects
-```
+
 2. Установите зависимости:
-```
+
 pip install -r requirements.txt
-```
+
 ## Использование:
 
 from src.processing.py import filter_by_state, sort_by_date
