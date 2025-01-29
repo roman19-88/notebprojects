@@ -19,4 +19,3 @@ def get_date(date: Union[str]) -> Union[str, int]:
     correct_data = new_data[0].split("-")
 
     return f"{correct_data[2]}.{correct_data[1]}.{correct_data[0]}"
-
