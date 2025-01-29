@@ -16,7 +16,7 @@ pip install -r requirements.txt
 ```
 ## Использование:
 
-from src.processing import filter_by_state, sort_by_date
+from src.processing.py import filter_by_state, sort_by_date
 
 # Пример использования filter_by_state
 transactions = [
