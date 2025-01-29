@@ -11,5 +11,3 @@ def get_mask_account(number_score: Union[int]) -> Union[str]:
     """Создаем функцию, которая принимает номер счет и возвращает маску номера счета"""
     str_number_score = str(number_score)
     return f"**{str_number_score[-4:]}"
-
-
