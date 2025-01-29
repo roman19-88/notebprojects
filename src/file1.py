@@ -1,1 +1,0 @@
-print('file1')d
