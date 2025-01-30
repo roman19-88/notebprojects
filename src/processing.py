@@ -1,8 +1,7 @@
 from typing import Any, Iterable, Union
 
 
-def filter_by_state(list_dictionary: Iterable[str], state_word = 'EXECUTED') -> None:
-    """ Функция сортирующая список словарей по ключу """
+def filter_by_state(list_dictionary: Iterable[str], state_word: Iterable[str]) -> Iterable[str]:
     dict_state = []
 
     for elem in list_dictionary:
@@ -12,12 +11,8 @@ def filter_by_state(list_dictionary: Iterable[str], state_word = 'EXECUTED') -> 
     return dict_state
 
 
-def sort_by_date(data: Iterable[str]) -> None:
-    """Функция сортирующая дату"""
-
+def sort_by_date(data: Union[int, str]) -> Union[int, str]:
     def data_get(item: Any) -> Any:
         return item["date"]
 
-
     return sorted(data, key=data_get, reverse=True)
-
