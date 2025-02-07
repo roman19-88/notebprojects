@@ -1,19 +1,23 @@
+from typing import Iterable
 
-from typing import Any, Iterable, Union
 
+def filter_by_state(list_dictionary: list[dict], state_word: str = "EXECUTED") -> list[dict]:
+    """Функция перебирает список словарей по ключу"""
 
-def filter_by_state(list_dictionary: Iterable[str], state_word: Iterable[str]) -> Iterable[str]:
-  """ Функция сортирующая список словарей по ключу """
     dict_state = []
-
     for elem in list_dictionary:
-        if elem["state"] == state_word:
+        if elem['state'] == state_word:
             dict_state.append(elem)
-
     return dict_state
 
 
-def sort_by_date(data: Union[int, str]) -> Union[int, str]:
-  """Функция сортирующая дату"""
-    def data_get(item: Any) -> Any:
+def sort_by_date(data: Iterable[dict], reverse_order = True ) -> list[dict]:
+    """Функция сортирует по дате"""
+
+    def data_get(item: dict) -> str:
+        """Функция вспомогающая, для сортировки"""
         return item["date"]
+
+    return sorted(data, key=data_get, reverse=reverse_order)
+
+
