@@ -1,5 +1,6 @@
 from typing import Iterable
 
+
 def filter_by_state(list_dictionary: list[dict], state_word: str = "EXECUTED") -> list[dict]:
     """Функция перебирает список словарей по ключу"""
 
@@ -18,3 +19,5 @@ def sort_by_date(data: Iterable[dict], reverse_order = True ) -> list[dict]:
         return item["date"]
 
     return sorted(data, key=data_get, reverse=reverse_order)
+
+
