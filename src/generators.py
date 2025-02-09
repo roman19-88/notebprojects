@@ -1,6 +1,3 @@
-import pytest
-
-
 def filter_by_currency(transactions, currency):
     """функция возвращает словарь с нужным типов валюты"""
     for transaction in transactions:

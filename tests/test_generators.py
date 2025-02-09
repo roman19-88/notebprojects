@@ -1,8 +1,7 @@
 import pytest
-from typing import List, Dict
-from src.generators import filter_by_currency
-from src.generators import transaction_descriptions
-from src.generators import card_number_generator
+
+from src.generators import (card_number_generator, filter_by_currency,
+                            transaction_descriptions)
 
 
 @pytest.mark.parametrize(
