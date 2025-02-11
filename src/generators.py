@@ -1,14 +1,14 @@
 def filter_by_currency(transactions, currency):
     """функция возвращает словарь с нужным типов валюты"""
     for transaction in transactions:
-        if transaction["operationAmount"]["currency"]["name"] == currency:
+        if transaction.get("operationAmount", {}).get("currency", {}).get('name')==currency:
             yield transaction
 
 
 def transaction_descriptions(transactions):
     """функция возвращает описание операции"""
     for transaction in transactions:
-        yield transaction['description']
+        yield transaction.get('description')
 
 
 def card_number_generator(start, stop):
