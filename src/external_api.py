@@ -1,49 +1,47 @@
+import os
+
 import requests
-API_KEY = 'bd047addbf603cdd539fc2619922cff5'
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_KEY = os.getenv('API_KEY')
 
 
-
-
-def convert_currency(transactions):
+def convert_currency(transaction):
     """функция конвертации валют в рубли"""
-    url = 'https://api.exchangeratesapi.io/v1/latest'
 
-    for i in transactions:
-        exchange_transaction = []
-        currency_code = i.get('operationAmount',{}).get('currency',{}).get('code')
-        amount = float(i.get('operationAmount', {}).get('amount'))
+    currency_code = transaction.get('operationAmount', {}).get('currency', {}).get('code')
+    amount = float(transaction.get('operationAmount', {}).get('amount'))
+    to = "RUB"
 
-        if currency_code == 'RUB':
-            exchange_transaction.append(amount)
+    url = f'https://api.apilayer.com/exchangerates_data/convert?to={to}&from={currency_code}&amount={amount}'
 
-        params = {'access_key': API_KEY,
-                  'amount': amount,
-                  'from': currency_code,
-                  'to': 'RUB'}
+    if currency_code == 'RUB':
+        return amount
 
-        result = requests.get(url, params=params)
+    headers = {'apikey': API_KEY}
+    result = requests.get(url, headers=headers)
 
-        if result.status_code == 200:
-            data = result.json()
+    if result.status_code == 200:
+        data = result.json()
 
-            if 'rates' in data and 'RUB' in data['rates']:
-                exchange_rate = data['rates']['RUB'] * amount
-                exchange_transaction.append(exchange_rate)
-    return exchange_transaction
+        if 'result' in data:
+            return data['result']
 
 
-print(convert_currency( [{
+print(convert_currency({
     "id": 41428829,
     "state": "EXECUTED",
     "date": "2019-07-03T18:35:29.512364",
     "operationAmount": {
-      "amount": "8221.37",
-      "currency": {
-        "name": "USD",
-        "code": "USD"
-      }
+        "amount": "8221.37",
+        "currency": {
+            "name": 'USD',
+            "code": 'USD'
+        }
     },
     "description": "Перевод организации",
     "from": "MasterCard 7158300734726758",
     "to": "Счет 35383033474447895560"
-  }]))
+}))
