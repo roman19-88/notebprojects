@@ -1,9 +1,9 @@
-from functools import capsys, wraps
-
-import pytest
+from functools import wraps
 
 
 def log(filename=None):
+    """декоратор логирования"""
+
     def inner(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -26,18 +26,3 @@ def log(filename=None):
         return wrapper
 
     return inner
-
-
-@capsys
-@log()
-def devider(x, y):
-    return x / y
-
-
-def test_devider_ok():
-    assert devider(4, 2) == 2
-
-
-def test_devider_zero_devision():
-    with pytest.raises(ZeroDivisionError):
-        devider(4, 0)
