@@ -33,7 +33,3 @@ def operations_finances(file_name):
     except json.JSONDecodeError as error:
         logger.error(f"Ошибка при чтении файла: {error}", exc_info=True)
         return []
-
-
-if __name__ == "__main__":
-    operations_finances('operations.json')
