@@ -3,6 +3,8 @@ from unittest.mock import MagicMock, patch
 
 from src.external_api import convert_currency
 
+"""тесты для функции конвертации валют"""
+
 
 @patch('src.external_api.requests.get')
 def test_convert_currency_no_conversion_for_rub(mock_get):

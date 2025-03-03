@@ -1,14 +1,15 @@
 import json
 import os
 from unittest.mock import mock_open, patch
-import pytest
 
 from src.utils import operations_finances  # Импортируем вашу функцию
+
+"""тесты для функции по открытию json-файла """
 
 
 # Тест, когда файл содержит данные
 @patch('builtins.open', new_callable=mock_open,
-    read_data='[{"id": 1, "amount": 100, "currency": "USD"}, {"id": 2, "amount": 200, "currency": "EUR"}]')
+       read_data='[{"id": 1, "amount": 100, "currency": "USD"}, {"id": 2, "amount": 200, "currency": "EUR"}]')
 def test_operations_finances_success(mocked_open):
     # Пример данных, которые вернет json.load
     # Мокаем json.load внутри функции
