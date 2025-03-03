@@ -3,7 +3,7 @@ import pytest
 from src.widget import get_date, mask_account_card
 
 
-@pytest.mark.parametrize("account_card, expected", [("Счёт1234567891234567", " Счёт 12** **** 9123")])
+@pytest.mark.parametrize("account_card, expected", [("Счёт 1234567891234567", "Счёт 1234 56** **** 4567")])
 def test_mask_account_card(account_card, expected):
     assert mask_account_card(account_card) == expected
 

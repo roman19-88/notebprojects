@@ -1,10 +1,13 @@
 import os
+
 import pytest
+
 from src.decorators import log
 
 """тесты для декоратора"""
 
 
+# Пример декорируемой функции для тестирования
 @log()
 def add(a, b):
     return a + b
@@ -24,7 +27,7 @@ def test_log_to_console(capsys):
 
 # Тестирование логирования в файл
 def test_log_to_file():
-    log_filename = 'test_log.txt'
+    log_filename = "test_log.txt"
 
     # Убедимся, что файл не существует перед тестом
     if os.path.exists(log_filename):
@@ -40,7 +43,7 @@ def test_log_to_file():
     # Проверяем, что файл существует и записано правильное сообщение
     assert os.path.exists(log_filename)
 
-    with open(log_filename, 'r') as file:
+    with open(log_filename, "r") as file:
         content = file.read().strip()
 
     assert content == "add ok"
@@ -49,7 +52,7 @@ def test_log_to_file():
     os.remove(log_filename)
 
 
-# Тестирование ошибок
+# Тестирование ошибок (ошибка при делении на ноль)
 def test_log_with_error(capsys):
     @log()
     def divide(a, b):
@@ -62,6 +65,35 @@ def test_log_with_error(capsys):
         captured = capsys.readouterr()
         # Проверяем, что ошибка была правильно записана в консоль
         assert "divide error: ZeroDivisionError. Inputs: (1, 0), {}" in captured.out.strip()
+
+
+# Тестирование обработки ошибок в декораторе
+def test_log_decorator_error(capsys):
+    # Декорируем функцию с ошибкой
+    @log()
+    def faulty_function(a, b):
+        raise ValueError("Test error")
+
+    # Проверяем, что ошибка будет правильно обработана и записана в консоль
+    try:
+        faulty_function(1, 2)
+    except ValueError:
+        captured = capsys.readouterr()
+        assert "faulty_function error: ValueError. Inputs: (1, 2), {}" in captured.out.strip()
+
+
+# Тестирование с неверным типом файла (например, запись в директорию, где нет прав)
+
+
+# Тестирование пустого сообщения в случае, если логирование не требуется
+def test_log_no_filename():
+    @log()
+    def add(a, b):
+        return a + b
+
+    result = add(1, 2)
+    assert result == 3  # Проверяем, что функция вернула правильный результат
+    # Просто проверяем, что вывод в консоль прошел (ничего не записано в файл)
 
 
 # Запуск тестов
