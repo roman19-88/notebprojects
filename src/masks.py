@@ -30,7 +30,7 @@ def get_mask_account(number_score: Union[int]) -> Union[str]:
 
     str_number_score = str(number_score)
     logger.info("Номер счета принят в работу")
-    if len(str_number_score) == 20 and len(str_number_score) >= 0:
+    if len(str_number_score) >= 0:
         logger.info("Номер счета замаскирован успешно")
         return f"**{str_number_score[-4:]}"
     else:
