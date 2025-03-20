@@ -64,5 +64,4 @@ def test_empty_count_transactions_by_category():
     assert empty_counts == {}
 
 
-if __name__ == "__main__":
-    unittest.main()
+
