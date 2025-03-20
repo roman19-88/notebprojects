@@ -1,9 +1,13 @@
 def filter_by_currency(transactions, currency):
     """функция возвращает словарь с нужным типов валюты"""
-    for transaction in transactions:
-        if transaction.get("operationAmount", {}).get("currency", {}).get("name") == currency:
-            yield transaction
 
+    for transaction in transactions:
+        try:
+            if transaction.get("operationAmount").get("currency").get("code") == currency:
+                yield transaction
+        except AttributeError:
+            if transaction.get('currency_code') == currency:
+                yield  transaction
 
 def transaction_descriptions(transactions):
     """функция возвращает описание операции"""
