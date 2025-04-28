@@ -9,6 +9,8 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.13"
+python-dotenv = "^1.0.1"
+pandas = "^2.2.3"
 
 
 [tool.poetry.group.lint.dependencies]
@@ -16,6 +18,12 @@ mypy = "^1.14.0"
 black = "^24.10.0"
 flake8 = "^7.1.1"
 isort = "^5.13.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+mypy = "^1.15.0"
+pytest-cov = "^6.0.0"
 
 [build-system]
 requires = ["poetry-core"]
